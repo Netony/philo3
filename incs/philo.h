@@ -2,6 +2,7 @@
 # define PHILO_H
 # include <pthread.h>
 # include <stdlib.h>
+# include <stdio.h>
 # include "lib.h"
 # include "time.h"
 
@@ -26,18 +27,24 @@ typedef struct s_philo
 {
 	pthread_t		thread;
 	int				name;
+	t_info			*info;
 	t_fork			*left;
 	t_fork			*right;
-	t_info			*info;
 	t_time			*last;
 	pthread_mutex_t	m_last;
 }	t_philo;
 
+int		ft_phsize(t_info *info);
+int		ft_timestamp(t_philo *philo, char *msg);
+int		ft_msleep(int ms);
+
 int		parser(t_info *info, int argc, char **argv);
+
+void	*ft_odd(void *param);
+void	*ft_even(void *param);
 
 t_philo	*philos_init(t_info *info);
 int		philos_destroy(t_philo *philos, t_info *info);
-void	*philo(void *param);
 
 int		ft_isend(t_philo *philo);
 int		ft_timestamp(t_philo *philo, char *log);

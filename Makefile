@@ -6,7 +6,7 @@
 #    By: dajeon <dajeon@student.42seoul.kr>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/16 09:00:32 by dajeon            #+#    #+#              #
-#    Updated: 2023/08/09 10:34:02 by dajeon           ###   ########.fr        #
+#    Updated: 2023/08/09 21:35:50 by dajeon           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,17 +17,17 @@ SOURCES = utils/ft_toklen.c \
 		  utils/utils.c \
 		  utils/time.c \
 		  philo/philo.c \
-		  philo/philo_do.c \
+		  philo/philo_main.c \
+		  philo/philo_utils.c \
 		  philo/philos_init.c \
-		  philo/philos_destroy.c \
 		  parser.c
 
 DIRS = philo utils
 
-SOURCES_MANDA = main.c 
-SOURCES_BONUS = 
+SOURCES_MANDA = main.c
+SOURCES_BONUS =
 
-INCLUDES = 
+INCLUDES =
 INCLUDES_MANDA =
 INCLUDES_BONUS =
 
@@ -37,7 +37,7 @@ LIB = ft
 # **************************************************************************** #
 
 LIB_DIR = libft
-SRC_DIR = .
+SRC_DIR = srcs
 OBJ_DIR = objs
 INC_DIR = incs
 
@@ -94,7 +94,7 @@ clean :
 
 fclean : 
 	$(RM) $(RMFLAGS) objs
-	$(RM) $(RMFLAGS) $(NAME)
+	$(RM) $(NAME)
 	$(MAKE) -C libft fclean
 
 re : 

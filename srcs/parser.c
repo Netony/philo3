@@ -1,5 +1,6 @@
 #include "philo.h"
 #include "lib.h"
+#define INT_MAX 2147483647
 
 int	ft_check_ispos(char *nptr);
 int	**info_list_new(t_info *info, int size);
@@ -18,16 +19,18 @@ int	parser(t_info *info, int argc, char **argv)
 	i = 1;
 	while (i < 6)
 	{
-		if (ft_check_ispos(argv[i]) == 0)
-		{
-			free(info_list);
-			ft_putendl_fd("philo: parse error: argument should be positive integer", 2);
-			return (-1);
-		}
 		if (i == argc)
-			*(info_list[i - 1]) = -1;
+			*(info_list[i - 1]) = INT_MAX;
 		else
+		{
+			if (ft_check_ispos(argv[i]) == 0)
+			{
+				free(info_list);
+				ft_putendl_fd("philo: parse error: argument should be positive integer", 2);
+				return (-1);
+			}
 			*(info_list[i - 1]) = ft_atoi(argv[i]);
+		}
 		i++;
 	}
 	free(info_list);

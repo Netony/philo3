@@ -16,12 +16,12 @@ int	ft_timenow(t_time *from)
 
 int	ft_timediff(t_time *a, t_time *b)
 {
-	int	diff_msec;
-	int	diff_sec;
-	int	diff_usec;
+	unsigned long	a_us;
+	unsigned long	b_us;
+	int				diff_usec;
 
-	diff_sec = b->tv_sec - a->tv_sec;
-	diff_usec = b->tv_usec - a->tv_usec;
-	diff_msec = diff_sec * 1000 + diff_usec / 1000;
-	return (diff_msec);
+	a_us = a->tv_sec * 1000000 + a->tv_usec;
+	b_us = b->tv_sec * 1000000 + b->tv_usec;
+	diff_usec = b_us - a_us;
+	return (diff_usec / 1000);
 }
