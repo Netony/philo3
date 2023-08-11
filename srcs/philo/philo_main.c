@@ -1,5 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   philo_main.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dajeon <dajeon@student.42seoul.kr>         +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/08/11 13:15:13 by dajeon            #+#    #+#             */
+/*   Updated: 2023/08/11 14:02:09 by dajeon           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "philo.h"
 
+int	ft_setend(t_philo *philo, t_info *info);
 int	philos_wait(t_philo *philos, t_info *info);
 int	philos_create(t_philo *philos, t_info *info);
 int	ft_timestamp_dead(t_philo *philo);
@@ -13,13 +26,12 @@ int	philo_main(t_info *info)
 	if (philos == NULL)
 		return (-1);
 	philos_create(philos, info);
-	usleep(100 * info->number_of_philos);
 	loop(philos, info);
 	philos_wait(philos, info);
 	philos_destroy(philos, info);
 	return (0);
 }
-		
+
 int	philos_wait(t_philo *philos, t_info *info)
 {
 	int	i;
@@ -42,15 +54,20 @@ int	philos_create(t_philo *philos, t_info *info)
 
 	size = info->number_of_philos;
 	i = 0;
-	while (i < size)
-	{
-		if (i % 2 == 1)
-			pthread_create(&(philos[i].thread), NULL, ft_odd, &philos[i]);
-		else
-			pthread_create(&(philos[i].thread), NULL, ft_even, &philos[i]);
-		i++;
-	}
 	ft_timeinit(&(info->start));
+	if (size == 1)
+		pthread_create(&(philos[i].thread), NULL, ft_solo, &philos[i]);
+	else
+	{
+		while (i < size)
+		{
+			if (i % 2 == 0)
+				pthread_create(&(philos[i].thread), NULL, ft_odd, &philos[i]);
+			else
+				pthread_create(&(philos[i].thread), NULL, ft_even, &philos[i]);
+			++i;
+		}
+	}
 	return (0);
 }
 
@@ -61,15 +78,14 @@ int	loop(t_philo *philos, t_info *info)
 
 	size = ft_phsize(info);
 	i = 0;
+	usleep(100 + 10 * info->number_of_philos);
 	while (i < size)
 	{
 		pthread_mutex_lock(&(philos[i].m_last));
 		if (ft_timenow(philos[i].last) > info->time_to_die)
 		{
-			pthread_mutex_lock(&(info->m_end));
-			ft_timestamp_dead(&philos[i]);
-			info->end = 1;
-			pthread_mutex_unlock(&(info->m_end));
+			ft_setend(&(philos[i]), info);
+			pthread_mutex_unlock(&(philos[i].m_last));
 			break ;
 		}
 		pthread_mutex_unlock(&(philos[i].m_last));
@@ -77,12 +93,5 @@ int	loop(t_philo *philos, t_info *info)
 		if (i == size)
 			i = 0;
 	}
-	return (0);
-}
-
-int	ft_timestamp_dead(t_philo *philo)
-{
-	if (philo->info->end == 0)
-		printf("%d %d died\n", ft_timenow(&(philo->info->start)), philo->name);
 	return (0);
 }

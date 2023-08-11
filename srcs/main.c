@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dajeon <dajeon@student.42seoul.kr>         +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/08/11 13:10:32 by dajeon            #+#    #+#             */
+/*   Updated: 2023/08/11 14:02:10 by dajeon           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "philo.h"
 
 int	philos_create(t_philo *philos, t_info *info);
@@ -25,6 +37,7 @@ int	info_init(t_info *info)
 {
 	pthread_mutex_init(&(info->m_end), NULL);
 	info->end = 0;
+	info->block = 0;
 	info->forks = NULL;
 	info->times = NULL;
 	return (0);
@@ -37,4 +50,3 @@ int	info_destroy(t_info *info)
 	ft_free(info->times);
 	return (0);
 }
-

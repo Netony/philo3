@@ -1,13 +1,25 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parser.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dajeon <dajeon@student.42seoul.kr>         +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/08/11 13:10:43 by dajeon            #+#    #+#             */
+/*   Updated: 2023/08/11 14:02:08 by dajeon           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "philo.h"
 #include "lib.h"
 #define INT_MAX 2147483647
 
 int	ft_check_ispos(char *nptr);
 int	**info_list_new(t_info *info, int size);
+int	info_list_set(int **info_list, int argc, char **argv);
 
 int	parser(t_info *info, int argc, char **argv)
 {
-	int	i;
 	int	**info_list;
 
 	if (argc != 5 && argc != 6)
@@ -15,7 +27,17 @@ int	parser(t_info *info, int argc, char **argv)
 		ft_putendl_fd("philo: parse error: argument number", 2);
 		return (-1);
 	}
-	info_list = info_list_new(info, argc - 1);
+	info_list = info_list_new(info, 5);
+	if (info_list_set(info_list, argc, argv) < 0)
+		return (-1);
+	free(info_list);
+	return (0);
+}
+
+int	info_list_set(int **info_list, int argc, char **argv)
+{
+	int	i;
+
 	i = 1;
 	while (i < 6)
 	{
@@ -26,14 +48,14 @@ int	parser(t_info *info, int argc, char **argv)
 			if (ft_check_ispos(argv[i]) == 0)
 			{
 				free(info_list);
-				ft_putendl_fd("philo: parse error: argument should be positive integer", 2);
+				ft_putendl_fd("philo: parse error:\
+					   	argument should be positive integer", 2);
 				return (-1);
 			}
 			*(info_list[i - 1]) = ft_atoi(argv[i]);
 		}
 		i++;
 	}
-	free(info_list);
 	return (0);
 }
 
@@ -42,7 +64,7 @@ int	**info_list_new(t_info *info, int size)
 	int	**list;
 	int	i;
 
-	list = (int **)malloc(sizeof(int) * size);
+	list = (int **)malloc(sizeof(int *) * size);
 	if (list == NULL)
 		return (NULL);
 	i = 0;

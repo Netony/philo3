@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   philo.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dajeon <dajeon@student.42seoul.kr>         +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/08/11 13:18:14 by dajeon            #+#    #+#             */
+/*   Updated: 2023/08/11 14:02:10 by dajeon           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef PHILO_H
 # define PHILO_H
 # include <pthread.h>
@@ -17,6 +29,7 @@ typedef struct s_info
 	int				time_to_die;
 	int				number_of_times;
 	int				end;
+	int				block;
 	pthread_mutex_t	m_end;
 	t_time			start;
 	t_fork			*forks;
@@ -27,6 +40,7 @@ typedef struct s_philo
 {
 	pthread_t		thread;
 	int				name;
+	int				dish;
 	t_info			*info;
 	t_fork			*left;
 	t_fork			*right;
@@ -42,12 +56,12 @@ int		parser(t_info *info, int argc, char **argv);
 
 void	*ft_odd(void *param);
 void	*ft_even(void *param);
+void	*ft_solo(void *param);
 
 t_philo	*philos_init(t_info *info);
 int		philos_destroy(t_philo *philos, t_info *info);
 
-int		ft_isend(t_philo *philo);
+int		ft_isend(t_info *info);
 int		ft_timestamp(t_philo *philo, char *log);
 
 #endif
-

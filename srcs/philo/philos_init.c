@@ -6,7 +6,7 @@
 /*   By: dajeon <dajeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/09 12:02:46 by dajeon            #+#    #+#             */
-/*   Updated: 2023/08/09 15:36:52 by dajeon           ###   ########.fr       */
+/*   Updated: 2023/08/11 11:46:40 by dajeon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ static int	philos_init_name(t_philo *philos, t_info *info)
 	while (i < size)
 	{
 		philos[i].name = i + 1;
+		philos[i].dish = 0;
 		philos[i].info = info;
 		i++;
 	}
