@@ -6,7 +6,7 @@
 /*   By: dajeon <dajeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/11 13:10:43 by dajeon            #+#    #+#             */
-/*   Updated: 2023/08/11 14:02:08 by dajeon           ###   ########.fr       */
+/*   Updated: 2023/08/11 14:12:28 by dajeon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	parser(t_info *info, int argc, char **argv)
 
 	if (argc != 5 && argc != 6)
 	{
-		ft_putendl_fd("philo: parse error: argument number", 2);
+		ft_putendl_fd("philo: invalid argument number", 2);
 		return (-1);
 	}
 	info_list = info_list_new(info, 5);
@@ -48,8 +48,7 @@ int	info_list_set(int **info_list, int argc, char **argv)
 			if (ft_check_ispos(argv[i]) == 0)
 			{
 				free(info_list);
-				ft_putendl_fd("philo: parse error:\
-					   	argument should be positive integer", 2);
+				ft_putendl_fd("philo: invalid argument type", 2);
 				return (-1);
 			}
 			*(info_list[i - 1]) = ft_atoi(argv[i]);
