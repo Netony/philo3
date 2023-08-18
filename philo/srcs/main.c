@@ -6,7 +6,7 @@
 /*   By: dajeon <dajeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/11 13:10:32 by dajeon            #+#    #+#             */
-/*   Updated: 2023/08/11 14:07:17 by dajeon           ###   ########.fr       */
+/*   Updated: 2023/08/18 18:22:18 by dajeon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int	info_init(t_info *info)
 int	info_destroy(t_info *info)
 {
 	pthread_mutex_destroy(&(info->m_end));
-	ft_free(info->forks);
+	fork_destroy(info->forks);
 	ft_free(info->times);
 	return (0);
 }

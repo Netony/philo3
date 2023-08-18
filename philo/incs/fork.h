@@ -10,6 +10,6 @@ typedef struct s_fork
 
 int	fork_init(t_fork *fork);
 int	fork_destroy(t_fork *fork);
-int	fork_take(t_fork *fork);
-int	fork_release(t_fork *fork);
+int	ft_take(t_fork *fork);
+int	ft_release(t_fork *fork);
 #endif

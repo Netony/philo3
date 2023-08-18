@@ -6,7 +6,7 @@
 /*   By: dajeon <dajeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/09 12:06:08 by dajeon            #+#    #+#             */
-/*   Updated: 2023/08/16 18:45:01 by dajeon           ###   ########.fr       */
+/*   Updated: 2023/08/18 18:41:53 by dajeon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,11 @@ int	ft_isend(t_info *info)
 int	ft_setend(t_philo *philo, t_info *info)
 {
 	pthread_mutex_lock(&(info->m_end));
+	if (info->end == 1)
+	{
+		pthread_mutex_unlock(&(info->m_end));
+		return (0);
+	}
 	info->end = 1;
 	if (philo->dish < info->number_of_times)
 	{

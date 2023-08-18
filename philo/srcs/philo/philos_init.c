@@ -6,7 +6,7 @@
 /*   By: dajeon <dajeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/09 12:02:46 by dajeon            #+#    #+#             */
-/*   Updated: 2023/08/16 20:22:43 by dajeon           ###   ########.fr       */
+/*   Updated: 2023/08/18 18:20:14 by dajeon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,6 @@ static int	philos_init_fork(t_philo *philos, t_info *info)
 	i = 0;
 	while (i < size)
 		fork_init(&forks[i++]);
-		//pthread_mutex_init(&forks[i++], NULL);
 	i = 0;
 	while (i < size)
 	{
@@ -121,6 +120,6 @@ int	philos_destroy(t_philo *philos, t_info *info)
 		pthread_mutex_destroy(&philos[i].m_last);
 		i++;
 	}
-	ft_free(philos);
+	free(philos);
 	return (0);
 }
