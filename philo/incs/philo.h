@@ -6,7 +6,7 @@
 /*   By: dajeon <dajeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/11 13:18:14 by dajeon            #+#    #+#             */
-/*   Updated: 2023/08/18 18:16:52 by dajeon           ###   ########.fr       */
+/*   Updated: 2023/08/18 20:57:52 by dajeon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ typedef struct s_info
 	t_time			start;
 	t_fork			*forks;
 	t_time			*times;
+	int				msize;
 }	t_info;
 
 typedef struct s_philo
@@ -51,11 +52,13 @@ typedef struct s_philo
 }	t_philo;
 
 int		ft_isend(t_info *info);
+int		ft_setend(t_philo *philo, t_info *info);
 int		ft_phsize(t_info *info);
 int		ft_timestamp(t_philo *philo, char *msg);
 int		ft_msleep(int ms);
 int		ft_wait(int number);
 
+void	*monitor(void *test);
 int		parser(t_info *info, int argc, char **argv);
 
 void	*ft_odd(void *param);

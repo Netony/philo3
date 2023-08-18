@@ -6,7 +6,7 @@
 #    By: dajeon <dajeon@student.42seoul.kr>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/16 09:00:32 by dajeon            #+#    #+#              #
-#    Updated: 2023/08/18 18:17:41 by dajeon           ###   ########.fr        #
+#    Updated: 2023/08/18 19:15:47 by dajeon           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,6 +22,8 @@ SOURCES = utils/ft_toklen.c \
 		  philo/philo_main.c \
 		  philo/philo_utils.c \
 		  philo/philos_init.c \
+		  ft_monitor.c \
+		  ft_mtsinit.c \
 		  parser.c \
 		  fork.c
 
