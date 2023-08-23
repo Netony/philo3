@@ -4,7 +4,7 @@ void	*ft_loop(void *param);
 void	*ft_loop_even(void *param);
 void	*ft_check_odd(void *param);
 
-int	ft_monitor(t_philo *philos, t_info *info)
+int	monitor(t_philo *philos, t_info *info)
 {
 	int			i;
 	int			size;
@@ -13,7 +13,7 @@ int	ft_monitor(t_philo *philos, t_info *info)
 	int			test;
 	
 	test = 100;
-	size = (info->number_of_philos + test - 1) / test;
+	size = (info->number_of_philos + test) / test - 1;
 	info->msize = size;
 	mts = ft_mtsinit(size, philos, info);
 	if (mts == NULL)
@@ -37,51 +37,34 @@ int	ft_monitor(t_philo *philos, t_info *info)
 void	*ft_loop(void *param)
 {
 	int			i;
-	int			msize;
-	int			size;
 	t_monitor	*monitor;
 	t_philo		*philos;
 
 	monitor = (t_monitor *)param;
-	i = monitor->name;
-	size = monitor->info->number_of_philos;
-	msize = monitor->info->msize;
 	philos = monitor->philos;
 	ft_wait(monitor->info->number_of_philos);
+	i = monitor->name;
 	while (1)
 	{
 		if (i >= size)
 			i = monitor->name;
-		pthread_mutex_lock(&(philos[i].m_last));
-		if (ft_timenow(philos[i].last) > monitor->info->time_to_die)
-		{
-			ft_setend(&(philos[i]), monitor->info);
-			pthread_mutex_unlock(&(philos[i].m_last));
-			break ;
-		}
-		pthread_mutex_unlock(&(philos[i].m_last));
-		i += msize;
+		ft_monitor_check(
+		i += monitor->monitor_size;
 	}
 	return (NULL);
 }
 
 void	*ft_check_odd(void *param)
 {
-	t_philo	*philo;
+	t_philo		*philo;
+	t_timeval	start;
 
 	philo = (t_philo *)param;
-	while (1)
+	start = gettimeofday(&start);
+	while (ft_timenow(&start) < philo->info->times_to_die + 10000)
 	{
+		ft_monitor_check(philo->eaten);
 		usleep(2000);
-		//printf("check(%d)\n", philo->name);
-		pthread_mutex_lock(&(philo->m_last));
-		if (ft_timenow(philo->last) > philo->info->time_to_die)
-		{
-			ft_setend(philo, philo->info);
-			pthread_mutex_unlock(&(philo->m_last));
-			break ;
-		}
-		pthread_mutex_unlock(&(philo->m_last));
 	}
 	return (NULL);
 }

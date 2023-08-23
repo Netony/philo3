@@ -6,7 +6,7 @@
 /*   By: dajeon <dajeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/11 13:18:14 by dajeon            #+#    #+#             */
-/*   Updated: 2023/08/18 20:57:52 by dajeon           ###   ########.fr       */
+/*   Updated: 2023/08/23 19:39:43 by dajeon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,37 +18,33 @@
 # include <unistd.h>
 # include "lib.h"
 # include "time.h"
-# include "fork.h"
-
-typedef struct timeval	t_time;
-//typedef pthread_mutex_t	t_fork;
+# include "status.h"
 
 typedef struct s_info
 {
-	int				number_of_philos;
-	int				time_to_sleep;
-	int				time_to_eat;
-	int				time_to_die;
-	int				number_of_times;
-	int				end;
-	int				block;
-	pthread_mutex_t	m_end;
-	t_time			start;
-	t_fork			*forks;
-	t_time			*times;
-	int				msize;
+	int			number_of_philos;
+	int			time_to_sleep;
+	int			time_to_eat;
+	int			time_to_die;
+	int			number_of_times;
+	t_stat		isend;
+	t_stat		*fork_array;
+	t_stat		*iseaten_array;
+	t_time		*start_time_array;
+	t_time		*eaten_time_array;
+	t_timeval	*start_time;
 }	t_info;
 
 typedef struct s_philo
 {
-	pthread_t		thread;
-	int				name;
-	int				dish;
-	t_info			*info;
-	t_fork			*left;
-	t_fork			*right;
-	t_time			*last;
-	pthread_mutex_t	m_last;
+	pthread_t	thread;
+	int			name;
+	int			dish;
+	t_stat		*left_fork;
+	t_stat		*right_fork;
+	t_stat		*iseaten;
+	t_time		*eaten_time;
+	t_info		*info;
 }	t_philo;
 
 int		ft_isend(t_info *info);
