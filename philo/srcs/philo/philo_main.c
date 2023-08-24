@@ -6,7 +6,7 @@
 /*   By: dajeon <dajeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/11 13:15:13 by dajeon            #+#    #+#             */
-/*   Updated: 2023/08/23 19:03:31 by dajeon           ###   ########.fr       */
+/*   Updated: 2023/08/24 14:56:00 by dajeon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,48 +31,6 @@ int	philo_main(t_info *info)
 	ft_monitor(philos, info);
 	philos_wait(philos, info);
 	philos_destroy(philos, info);
-	return (0);
-}
-
-int	philos_create(t_philo *philos, t_info *info)
-{
-	int	i;
-	int	size;
-
-	size = info->number_of_philos;
-	i = 0;
-	ft_timeinit(&(info->start));
-	while (i < size)
-		ft_timeinit(&info->times[i++]);
-	if (size == 1)
-		pthread_create(&(philos[0].thread), NULL, ft_solo, &philos[0]);
-	else
-	{
-		i = 0;
-		while (i < size)
-		{
-			if (i % 2 == 0)
-				pthread_create(&(philos[i].thread), NULL, ft_odd, &philos[i]);
-			else
-				pthread_create(&(philos[i].thread), NULL, ft_even, &philos[i]);
-			++i;
-		}
-	}
-	return (0);
-}
-
-int	philos_wait(t_philo *philos, t_info *info)
-{
-	int	i;
-	int	size;
-
-	size = info->number_of_philos;
-	i = 0;
-	while (i < size)
-	{
-		pthread_join(philos[i].thread, NULL);
-		i++;
-	}
 	return (0);
 }
 
