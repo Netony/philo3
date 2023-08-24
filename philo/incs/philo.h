@@ -6,7 +6,7 @@
 /*   By: dajeon <dajeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/11 13:18:14 by dajeon            #+#    #+#             */
-/*   Updated: 2023/08/24 11:45:59 by dajeon           ###   ########.fr       */
+/*   Updated: 2023/08/24 19:51:12 by dajeon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 typedef struct s_info
 {
 	int			size;
+	int			moni_size;
 	int			time_to_sleep;
 	int			time_to_eat;
 	int			time_to_die;
@@ -35,6 +36,7 @@ typedef struct s_info
 	t_timeval	start_time;
 }	t_info;
 
+int	parser(t_info *info, int argc, char **argv);
 int	info_new(t_info *info);
 int	info_del(t_info *info);
 
@@ -43,28 +45,28 @@ typedef struct s_philo
 	pthread_t	thread;
 	int			name;
 	int			dish;
-	t_stat		*left_fork;
-	t_stat		*right_fork;
+	t_stat		*left;
+	t_stat		*right;
 	t_stat		*iseaten;
 	t_time		*eaten_time;
 	t_info		*info;
 }	t_philo;
 
-int		ft_isend(t_info *info);
-int		ft_setend(t_philo *philo, t_info *info);
-int		ft_phsize(t_info *info);
+t_philo	*philos_init(t_info *info);
+int		philo_thread_start(t_philo *philos, t_info *info);
+int		philo_thread_end(t_philo *philos, t_info *info);
+
+void	*philo_odd(void *param);
+void	*philo_even(void *param);
+void	*philo_one(void *param);
+
+int		ft_wait(int number);
 int		ft_timestamp(t_philo *philo, char *msg);
 int		ft_msleep(int ms);
-int		ft_wait(int number);
 
-void	*monitor(void *test);
-int		parser(t_info *info, int argc, char **argv);
+# include "monitor.h"
 
-void	*ft_odd(void *param);
-void	*ft_even(void *param);
-void	*ft_solo(void *param);
+int		ft_check_dead(t_time *times, int i, t_info *info);
 
-t_philo	*philos_init(t_info *info);
-int		philos_destroy(t_philo *philos, t_info *info);
 
 #endif

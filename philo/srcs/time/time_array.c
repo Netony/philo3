@@ -6,11 +6,11 @@
 /*   By: dajeon <dajeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/24 11:06:22 by dajeon            #+#    #+#             */
-/*   Updated: 2023/08/24 11:06:23 by dajeon           ###   ########.fr       */
+/*   Updated: 2023/08/24 19:03:46 by dajeon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "time.h"
+#include "status.h"
 
 t_time	*times_new(int size)
 {

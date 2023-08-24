@@ -1,6 +1,5 @@
-#ifndef STAT_H
-# define STAT_H
-
+#ifndef STATUS_H
+# define STATUS_H
 # include <stdlib.h>
 # include <pthread.h>
 
@@ -24,4 +23,28 @@ int		stats_destroy(t_stat *stats, int size);
 int		fork_take(t_stat *fork);
 int		fork_release(t_stat *fork);
 
+# include <sys/time.h>
+
+typedef struct timeval t_timeval;
+
+int		ft_tvrenew(t_timeval *tv);
+int		ft_tvdiff(t_timeval *a, t_timeval *b);
+int		ft_tvnow(t_timeval *from);
+
+typedef struct s_time
+{
+	t_timeval		timeval;
+	pthread_mutex_t	m_time;
+}	t_time;
+
+int		ft_timeinit(t_time *time);
+int		ft_timedel(t_time *time);
+int		ft_timeset(t_time *time, t_timeval *copy); // ft_tvrenew();
+int		ft_timeget(t_timeval *start, t_time *time); // ft_timenow();
+
+int		ft_timelock(t_time *time);
+int		ft_timeunlock(t_time *time);
+
+t_time	*times_new(int size);
+int		times_destroy(t_time *times, int size);
 #endif

@@ -6,7 +6,7 @@
 #    By: dajeon <dajeon@student.42seoul.kr>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/16 09:00:32 by dajeon            #+#    #+#              #
-#    Updated: 2023/08/18 19:15:47 by dajeon           ###   ########.fr        #
+#    Updated: 2023/08/24 19:38:12 by dajeon           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,22 +17,31 @@ SOURCES = utils/ft_toklen.c \
 		  utils/utils.c \
 		  utils/utils2.c \
 		  utils/ft_atoi.c \
-		  utils/time.c \
-		  philo/philo.c \
-		  philo/philo_main.c \
-		  philo/philo_utils.c \
-		  philo/philos_init.c \
-		  ft_monitor.c \
-		  ft_mtsinit.c \
+		  stat/stat.c \
+		  stat/stat_array.c \
+		  stat/stat_fork.c \
+		  stat/stat_lock.c \
+		  time/time.c \
+		  time/time_array.c \
+		  time/time_lock.c \
+		  time/timeval.c \
 		  parser.c \
-		  fork.c
+		  philosophers_start.c \
+		  philos_init.c \
+		  philo.c \
+		  ft_timestamp.c \
+		  info.c \
+		  ft_check.c \
+		  monitor.c \
+		  monis_init.c
 
-DIRS = philo utils
+
+DIRS = stat time utils
 
 SOURCES_MANDA = main.c
 SOURCES_BONUS =
 
-INCLUDES = philo.h lib.h time.h
+INCLUDES = philo.h lib.h time.h status.h
 INCLUDES_MANDA =
 INCLUDES_BONUS =
 
@@ -77,8 +86,8 @@ CC = cc
 AR = ar
 RM = rm
 
-CFLAGS = -Wall -Wextra -Werror
-LIBFTFLAGS = 
+CFLAGS = -Wall -Wextra -Werror 
+LIBFTFLAGS =
 
 ARFLAGS = crus
 RMFLAGS = -rf
@@ -115,7 +124,7 @@ $(LIBFT):
 	$(MAKE) -j3 -C $(LIB_DIR) all
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c $(INCS_NEW) | $(OBJ_DIR) $(OBJ_DIRS)
-	$(CC) $(CFLAGS) $< -c -I $(INC_DIR) -o $@
+	$(CC) $(CFLAGS) $< -c -I $(INC_DIR) -o $@ 
 
 $(OBJ_DIR):
 	mkdir $@

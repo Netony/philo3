@@ -6,7 +6,7 @@
 /*   By: dajeon <dajeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/11 13:14:49 by dajeon            #+#    #+#             */
-/*   Updated: 2023/08/16 18:45:20 by dajeon           ###   ########.fr       */
+/*   Updated: 2023/08/24 18:52:30 by dajeon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,6 @@ void	ft_free(void *ptr)
 		return ;
 	free(ptr);
 	ptr = NULL;
-}
-
-int	ft_phsize(t_info *info)
-{
-	return (info->number_of_philos);
 }
 
 int	ft_wait(int number)

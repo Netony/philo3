@@ -3,22 +3,29 @@
 
 int	ft_timestamp(t_philo *philo, char *msg)
 {
-	ft_statlock(&(philo->info->dead));
-	if (ft_statget(philo->info->dead) == 0)
-		printf("%d %d %s\n",
-			   	ft_timenow(&(philo->info->start_time)), philo->name, msg);
-	ft_statunlock(&(philo->info->dead));
-	return (0);
+	int	ret;
+
+	ret = 0;
+	ft_statlock(&(philo->info->isdead));
+	if (ft_statget(&(philo->info->isdead)) == 0)
+	{
+	printf("%d %d %s\n",
+		   	ft_tvnow(&(philo->info->start_time)), philo->name, msg);
+	}
+	else
+		ret = 1;
+	ft_statunlock(&(philo->info->isdead));
+	return (ret);
 }
 
 int	ft_msleep(int ms)
 {
-	int		us;
-	t_time	start;
+	int			us;
+	t_timeval	start;
 
-	ft_timeinit(&start);
+	ft_tvrenew(&start);
 	us = ms * 1000;
-	while (ft_timenow(&start) < ms)
+	while (ft_tvnow(&start) < ms)
 	{
 		if (us * 1 / 5 >= 50)
 			us = us / 5;

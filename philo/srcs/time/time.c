@@ -6,11 +6,11 @@
 /*   By: dajeon <dajeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/11 13:14:44 by dajeon            #+#    #+#             */
-/*   Updated: 2023/08/24 11:02:48 by dajeon           ###   ########.fr       */
+/*   Updated: 2023/08/24 19:05:19 by dajeon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "time.h"
+#include "status.h"
 
 int	ft_timeinit(t_time *time)
 {
@@ -40,12 +40,7 @@ int	ft_timeset(t_time *time, t_timeval *copy)
 	return (0);
 }
 
-int	ft_timeget(t_time *time)
+int	ft_timeget(t_timeval *start, t_time *time)
 {
-	t_timeval	*from;
-	
-	if (from == NULL)
-		return (-1);
-	from = &(time->timeval);
-	return (ft_tvnow(from));
+	return (ft_tvdiff(start, &(time->timeval)));
 }

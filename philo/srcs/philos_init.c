@@ -15,14 +15,15 @@ t_philo	*philos_init(t_info *info)
 	{
 		philos[i].name = i + 1;
 		philos[i].dish = 0;
-		philos[i].left_fork = info->fork_array[i];
+		philos[i].left = &(info->fork_array[i]);
 		if (i + 1 == size)
-			philos[i].right_fork = info->fork_array[0];
+			philos[i].right = &(info->fork_array[0]);
 		else
-			philos[i].right_fork = info->fork_array[i + 1];
-		philos[i].iseaten = info->iseaten_array[i];
-		philos[i].eaten_tine = info->eaten_time_array[i];
+			philos[i].right = &(info->fork_array[i + 1]);
+		philos[i].iseaten = &(info->iseaten_array[i]);
+		philos[i].eaten_time = &(info->eaten_time_array[i]);
 		philos[i].info = info;
+		i++;
 	}
 	return (philos);
 }

@@ -1,53 +1,101 @@
-void	*monitor(void *param)
+#include "monitor.h"
+
+int	ft_last(int name, int moni_size, int size);
+
+void	*moni_odd(void *param)
 {
-	t_moni	*monis;
+	t_moni	*moni;
 	int		size;
 	int		i;
 
-	monis = (t_moni *)param;
-	size = monis->info->size;
-	i = monis->name;
+	moni = (t_moni *)param;
+	size = moni->info->size;
+	i = moni->name;
 	while (1)
 	{
-		ft_check(monis->eaten_time_array)
-		i += monis->moni_size;
+		ft_wait(size);
+		if (ft_check_dead(moni->eaten_time_array, i, moni->info) == 1)
+			break ;
+		i += moni->size;
 		if (i >= size)
-			i = name;
+			i = moni->name;
 	}
 	return (NULL);
 }
 
-void	*monitor_even(void *param)
+void	*moni_even(void *param)
 {
-	t_moni	*monis;
+	t_moni	*moni;
 	int		last;
 
-	monis = (t_moni *)param;
-	last = ft_last(name, monis->size, monis->info->size);
+	moni = (t_moni *)param;
+	last = ft_last(moni->name, moni->size, moni->info->size);
 	while (1)
 	{
-		ft_check(monis->eaten_time_array)
-		last -= monis->size;
+		ft_wait(moni->info->size);
+		if (ft_check_dead(moni->eaten_time_array, last, moni->info) == 1)
+			break ;
+		last -= moni->size;
 		if (last < 0)
-			last = ft_last(name, monis->size, monis->info->size);
+			last = ft_last(moni->name, moni->size, moni->info->size);
 	}
 	return (NULL);
 }
 
-int	kill(t_philo *philo)
+void	*moni_killer(void *param)
 {
-	ft_setdead(philo, );
+	t_info	*info;
+	int		kill;
+
+	info = (t_info *)param;
+	kill = info->size - 2;
+	while (1)
+	{
+		if (ft_check_dead(info->eaten_time_array, kill, info) == 1)
+				break ;
+	}
+	return (NULL);
 }
 
-int	ft_last_index(int name, int moni_size, int size)
+void	*moni_eaten(void *param)
+{
+	t_stat	*iseaten;
+	int		size;
+	int		i;
+	int		j;
+
+	i = 0;
+	while (1)
+	{
+		j = 0;
+		while (j < size)
+		{
+			ft_statlock(&iseaten[i]);
+			if (ft_statget(&iseaten[i]) == 1)
+				j++;
+			ft_statunlock(&iseaten[i]);
+			i++;
+			if (i == size)
+				i = 0;
+		}
+		if (j == size)
+		{
+			ft_statlock(
+		}
+		i++;
+	}	
+	return (NULL);
+}
+
+int	ft_last(int name, int moni_size, int size)
 {
 	int	last;
 	int	div;
 
 	div = size % moni_size;
-	if (name > div)
+	if (name >= div)
 		last = size - div + name - moni_size;
 	else
 		last = size - div + name;
-	return (last - 1);
+	return (last);
 }

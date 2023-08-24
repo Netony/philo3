@@ -1,4 +1,4 @@
-#include "time.h"
+#include "status.h"
 
 int	ft_timelock(t_time *time)
 {

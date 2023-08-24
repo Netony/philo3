@@ -1,3 +1,5 @@
+#include "philo.h"
+
 int	info_new(t_info *info)
 {
 	info->fork_array = stats_new(info->size);
@@ -9,8 +11,8 @@ int	info_new(t_info *info)
 		stats_destroy(info->fork_array, info->size);
 		return (-1);
 	}
-	info->eaten_tine_array = times_new(info->size);
-	if (eaten_time_array == NULL)
+	info->eaten_time_array = times_new(info->size);
+	if (info->eaten_time_array == NULL)
 	{
 		stats_destroy(info->fork_array, info->size);
 		stats_destroy(info->iseaten_array, info->size);
