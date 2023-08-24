@@ -1,27 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   time_array.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dajeon <dajeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/11 13:10:32 by dajeon            #+#    #+#             */
-/*   Updated: 2023/08/24 11:23:21 by dajeon           ###   ########.fr       */
+/*   Created: 2023/08/24 11:06:22 by dajeon            #+#    #+#             */
+/*   Updated: 2023/08/24 11:06:23 by dajeon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo.h"
+#include "time.h"
 
-int	main(int argc, char **argv)
+t_time	*times_new(int size)
 {
-	t_info	info;
-	t_philo	*philosophers;
+	t_time	*times;
+	int		i;
 
-	ret = 0;
-	if (parser(&info, argc, argv) < 0)
-		return (1);
-	if (info_new(&info) < 0)
-		return (1);
-	info_del(&info);
+	times = (t_time *)malloc(sizeof(t_time) * size);
+	if (times == NULL)
+		return (NULL);
+	i = 0;
+	while (i < size)
+		ft_timeinit(&times[i++]);
+	return (times);
+}
+
+int	times_destroy(t_time *times, int size)
+{
+	int	i;
+
+	i = 0;
+	while (i < size)
+		ft_timedel(&times[i++]);
+	free(times);
 	return (0);
 }

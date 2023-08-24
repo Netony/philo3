@@ -6,7 +6,7 @@
 /*   By: dajeon <dajeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/11 13:10:43 by dajeon            #+#    #+#             */
-/*   Updated: 2023/08/23 18:46:40 by dajeon           ###   ########.fr       */
+/*   Updated: 2023/08/24 11:08:52 by dajeon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ int	**info_list_new(t_info *info, int size)
 	if (list == NULL)
 		return (NULL);
 	i = 0;
-	list[i++] = &(info->number_of_philos);
+	list[i++] = &(info->size);
 	list[i++] = &(info->time_to_die);
 	list[i++] = &(info->time_to_eat);
 	list[i++] = &(info->time_to_sleep);

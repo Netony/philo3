@@ -6,7 +6,7 @@
 /*   By: dajeon <dajeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/11 13:15:03 by dajeon            #+#    #+#             */
-/*   Updated: 2023/08/23 19:03:32 by dajeon           ###   ########.fr       */
+/*   Updated: 2023/08/24 11:22:31 by dajeon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,10 @@ void	*ft_odd(void *param)
 	t_philo	*philo;
 
 	philo = (t_philo *)param;
-	ft_timeinit(philo->last);
+	ft_tvrenew(philo->last);
 	while (!ft_isend(philo->info) && philo->dish < philo->info->number_of_times)
 	{
-		ft_wait(philo->info->number_of_philos);
+		ft_wait(philo->info->size);
 		ft_take(philo->left);
 		ft_timestamp(philo, "has taken a fork");
 		ft_take(philo->right);

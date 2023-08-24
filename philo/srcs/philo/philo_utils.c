@@ -1,3 +1,4 @@
+
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
@@ -6,44 +7,25 @@
 /*   By: dajeon <dajeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/09 12:06:08 by dajeon            #+#    #+#             */
-/*   Updated: 2023/08/18 19:22:12 by dajeon           ###   ########.fr       */
+/*   Updated: 2023/08/24 11:49:03 by dajeon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 #include "philo.h"
 
-int	ft_msleep(int ms)
+int	ft_dead(t_philo *philo)
 {
-	int		us;
-	t_time	start;
-
-	ft_timeinit(&start);
-	us = ms * 1000;
-	while (ft_timenow(&start) < ms)
 	{
-		if (us * 1 / 5 >= 50)
-			us = us / 5;
-		else
-			us = 50;
-		usleep(us);
+		info->block = 1;
 	}
-	return (0);
 }
-
-int	ft_timestamp(t_philo *philo, char *msg)
+int	ft_setend(t_info *info)
 {
-	pthread_mutex_lock(&(philo->info->m_end));
-	if (philo->info->block == 0)
-		printf("%d %d %s\n",
-			   	ft_timenow(&(philo->info->start)), philo->name, msg);
-	pthread_mutex_unlock(&(philo->info->m_end));
-	return (0);
-}
-
-int	ft_timestamp_dead(t_philo *philo)
-{
-	printf("%d %d died\n", ft_timenow(&(philo->info->start)), philo->name);
+	ft_statlock(&(info->isend));
+	if (ft_statget(&info->isend) == 0)
+		ft_statset(&(info->isend), 1);
+	ft_statunlock(&(info->isend));
 	return (0);
 }
 
@@ -51,27 +33,26 @@ int	ft_isend(t_info *info)
 {
 	int	ret;
 
-	ret = 0;
-	pthread_mutex_lock(&(info->m_end));
-	ret += info->end;
-	pthread_mutex_unlock(&(info->m_end));
+	ft_statlock(&(info->isend));
+	ret = ft_statget(&(info->isend));
+	ft_statunlock(&(info->isend));
 	return (ret);
 }
 
-int	ft_setend(t_philo *philo, t_info *info)
+int	ft_checkdead(t_info *info, t_philo *philo)
 {
-	pthread_mutex_lock(&(info->m_end));
-	if (info->end == 1)
-	{
-		pthread_mutex_unlock(&(info->m_end));
-		return (0);
-	}
-	info->end = 1;
+	int	ret;
+
+	ret = 0;
+	ft_statlock(&(info->isdead));
+	//if (ft_statget(&info->isdead) == 0)
 	if (philo->dish < info->number_of_times)
 	{
-		ft_timestamp_dead(philo);
-		info->block = 1;
+		printf("%d %d died\n", ft_timenow(&(philo->info->start_time)), philo->name);
+		ft_statset(&(info->isdead), 1);
+		ret++;
 	}
-	pthread_mutex_unlock(&(info->m_end));
+	ft_statunlock(&(info->isdead));
 	return (0);
 }
+
