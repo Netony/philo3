@@ -8,8 +8,6 @@ typedef struct s_monitor
 	pthread_t	thread;
 	int			name;
 	int			size;
-	int			monitor_size;
-	t_philo		*philos;
 	t_info		*info;
 }	t_monitor;
 
