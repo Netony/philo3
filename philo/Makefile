@@ -85,7 +85,7 @@ CC = cc
 AR = ar
 RM = rm
 
-CFLAGS = -Wall -Wextra -Werror -fsanitize=thread
+CFLAGS = -Wall -Wextra -Werror 
 
 ARFLAGS = crus
 RMFLAGS = -rf

@@ -6,7 +6,7 @@
 /*   By: dajeon <dajeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/11 13:14:49 by dajeon            #+#    #+#             */
-/*   Updated: 2023/08/25 19:21:11 by dajeon           ###   ########.fr       */
+/*   Updated: 2023/08/25 22:22:51 by dajeon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,22 @@ int	ft_msleep(int ms)
 	ft_tvrenew(&start);
 	us = ms * 1000;
 	while (ft_tvnow(&start) < ms)
+	{
+		if (us * 1 / 5 >= 50)
+			us = us / 5;
+		else
+			us = 50;
+		usleep(us);
+	}
+	return (0);
+}
+
+int	ft_usleep(int us)
+{
+	t_timeval	start;
+
+	ft_tvrenew(&start);
+	while (ft_tvnow_us(&start) < us)
 	{
 		if (us * 1 / 5 >= 50)
 			us = us / 5;

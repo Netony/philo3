@@ -6,7 +6,7 @@
 /*   By: dajeon <dajeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/24 11:02:52 by dajeon            #+#    #+#             */
-/*   Updated: 2023/08/24 19:05:38 by dajeon           ###   ########.fr       */
+/*   Updated: 2023/08/25 22:21:50 by dajeon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,4 +35,24 @@ int	ft_tvdiff(t_timeval *a, t_timeval *b)
 	b_us = b->tv_sec * 1000000 + b->tv_usec;
 	diff_usec = b_us - a_us;
 	return (diff_usec / 1000);
+}
+
+long	ft_tvdiff_us(t_timeval *a, t_timeval *b)
+{
+	unsigned long	a_us;
+	unsigned long	b_us;
+	int				diff_usec;
+
+	a_us = a->tv_sec * 1000000 + a->tv_usec;
+	b_us = b->tv_sec * 1000000 + b->tv_usec;
+	diff_usec = b_us - a_us;
+	return (diff_usec);
+}
+
+long	ft_tvnow_us(t_timeval *from)
+{
+	t_timeval	now;
+
+	ft_tvrenew(&now);
+	return (ft_tvdiff_us(from, &now));
 }

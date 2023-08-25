@@ -27,9 +27,11 @@ int		ft_release(t_stat *fork);
 
 typedef struct timeval t_timeval;
 
-int	ft_tvrenew(t_timeval *tv);
-int	ft_tvdiff(t_timeval *a, t_timeval *b);
-int	ft_tvnow(t_timeval *from);
+int		ft_tvrenew(t_timeval *tv);
+int		ft_tvdiff(t_timeval *a, t_timeval *b);
+int		ft_tvnow(t_timeval *from);
+long	ft_tvnow_us(t_timeval *from);
+long	ft_tvdiff_us(t_timeval *a, t_timeval *b);
 
 typedef struct s_time
 {

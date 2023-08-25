@@ -6,7 +6,7 @@
 /*   By: dajeon <dajeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/25 18:37:51 by dajeon            #+#    #+#             */
-/*   Updated: 2023/08/25 20:03:24 by dajeon           ###   ########.fr       */
+/*   Updated: 2023/08/25 22:24:06 by dajeon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ void	*moni_killer(void *param)
 	ft_tvrenew(&start);
 	philo = (t_philo *)param;
 	while (ft_tvnow(&start) < philo->info->time_to_die)
-		usleep(100);
+		ft_usleep(200);
 	ft_kill(philo, philo->info);
 	return (NULL);
 }
@@ -78,7 +78,7 @@ void	*moni_eaten(void *param)
 	size = info->size;
 	iseaten_array = info->iseaten_array;
 	i = 0;
-	while (i != size)
+	while (i != size && ft_isend(info) == 0)
 	{
 		ft_wait(size);
 		ft_lockstat(&iseaten_array[i]);
