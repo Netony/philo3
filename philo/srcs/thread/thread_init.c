@@ -6,7 +6,7 @@
 /*   By: dajeon <dajeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/25 18:38:00 by dajeon            #+#    #+#             */
-/*   Updated: 2023/08/25 18:38:01 by dajeon           ###   ########.fr       */
+/*   Updated: 2023/08/25 20:00:51 by dajeon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,11 +54,13 @@ int	moni_thread_start(t_moni *monis)
 	int			size;
 	int			i;
 	pthread_t	killer;
+	pthread_t	monitor;
 
 	i = 0;
 	size = monis[i].size;
 	if (ft_alwaysdie(monis->info))
 		pthread_create(&killer, NULL, moni_killer, &monis->philos[monis[i].info->size - 2]);
+	pthread_create(&monitor, NULL, moni_eaten, monis->info);
 	while (i < size)
 	{
 		if (i % 2 == 0)
@@ -67,6 +69,7 @@ int	moni_thread_start(t_moni *monis)
 			pthread_create(&(monis[i].thread), NULL, moni_even, &monis[i]);
 		i++;
 	}
+	pthread_join(monitor, NULL);
 	if (ft_alwaysdie(monis->info))
 		pthread_join(killer, NULL);
 	return (0);

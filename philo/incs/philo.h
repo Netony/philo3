@@ -6,7 +6,7 @@
 /*   By: dajeon <dajeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/11 13:18:14 by dajeon            #+#    #+#             */
-/*   Updated: 2023/08/25 16:32:01 by dajeon           ###   ########.fr       */
+/*   Updated: 2023/08/25 19:22:10 by dajeon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,13 @@ void	*philo_one(void *param);
 int		ft_wait(int number);
 int		ft_timestamp(t_philo *philo, char *msg);
 int		ft_msleep(int ms);
+
+int		ft_isdead(t_philo *philo, t_info *info);
+int		ft_iseaten(t_philo *philo);
+int		ft_isend(t_info *info);
+
+int		ft_kill(t_philo *philo, t_info *info);
+int		ft_alwaysdie(t_info *info);
 
 # include "monitor.h"
 

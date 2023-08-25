@@ -6,7 +6,7 @@
 #    By: dajeon <dajeon@student.42seoul.kr>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/16 09:00:32 by dajeon            #+#    #+#              #
-#    Updated: 2023/08/25 18:37:07 by dajeon           ###   ########.fr        #
+#    Updated: 2023/08/25 19:27:45 by dajeon           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,8 +15,8 @@ BONUS =
 
 SOURCES = parser/parser.c \
 		  parser/parser_utils.c \
-		  parser/parser_utils3.c \
 		  parser/parser_utils2.c \
+		  parser/parser_utils3.c \
 		  stat/stat.c \
 		  stat/fork.c \
 		  stat/stat_init.c \
@@ -32,6 +32,7 @@ SOURCES = parser/parser.c \
 		  thread/monis_function.c \
 		  thread/utils.c \
 		  thread/utils2.c \
+		  thread/utils3.c \
 		  info_init.c
 
 DIRS = stat time utils parser thread

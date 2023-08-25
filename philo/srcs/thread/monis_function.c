@@ -6,15 +6,12 @@
 /*   By: dajeon <dajeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/25 18:37:51 by dajeon            #+#    #+#             */
-/*   Updated: 2023/08/25 18:37:52 by dajeon           ###   ########.fr       */
+/*   Updated: 2023/08/25 20:03:24 by dajeon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "monitor.h"
 
-int	ft_kill(t_philo *philo, t_info *info);
-int	ft_isdead(t_philo *philo, t_info *info);
-int	ft_isend(t_stat *isend);
 int	ft_last(int name, int moni_size, int size);
 
 void	*moni_odd(void *param)
@@ -26,7 +23,7 @@ void	*moni_odd(void *param)
 	moni = (t_moni *)param;
 	size = moni->info->size;
 	i = moni->name;
-	while (ft_isend(&moni->info->isend) == 0)
+	while (ft_isend(moni->info) == 0)
 	{
 		ft_wait(size);
 		if (ft_isdead(&moni->philos[i], moni->info) == 1)
@@ -45,7 +42,7 @@ void	*moni_even(void *param)
 
 	moni = (t_moni *)param;
 	last = ft_last(moni->name, moni->size, moni->info->size);
-	while (ft_isend(&moni->info->isend) == 0)
+	while (ft_isend(moni->info) == 0)
 	{
 		ft_wait(moni->info->size);
 		if (ft_isdead(&moni->philos[last], moni->info) == 1)
@@ -65,28 +62,10 @@ void	*moni_killer(void *param)
 	ft_tvrenew(&start);
 	philo = (t_philo *)param;
 	while (ft_tvnow(&start) < philo->info->time_to_die)
-		usleep(200);
+		usleep(100);
 	ft_kill(philo, philo->info);
 	return (NULL);
 }
-
-/*
-void	*moni_killer(void *param)
-{
-	t_philo		*kill;
-	t_timeval	start;
-
-	kill = (t_philo *)param;
-	while (ft_tvnow(&start) < kill->info->time_to_die + 2000)
-	{
-		if (ft_isend(&kill->info->isend) == 1)
-			break ;
-		if (ft_isdead(kill, kill->info) == 1)
-			break ;
-	}
-	return (NULL);
-}
-*/
 
 void	*moni_eaten(void *param)
 {
@@ -99,11 +78,11 @@ void	*moni_eaten(void *param)
 	size = info->size;
 	iseaten_array = info->iseaten_array;
 	i = 0;
-	while (i == size)
+	while (i != size)
 	{
 		ft_wait(size);
 		ft_lockstat(&iseaten_array[i]);
-		if (ft_getstat(&iseaten_array[i]) == 1)
+		if (ft_getstat(&iseaten_array[i]) == 0)
 			i = 0;
 		else
 			i++;
@@ -114,6 +93,7 @@ void	*moni_eaten(void *param)
 	ft_unlockstat(&info->isend);
 	return (NULL);
 }
+
 int	ft_last(int name, int moni_size, int size)
 {
 	int	last;

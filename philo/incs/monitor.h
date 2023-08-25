@@ -16,6 +16,8 @@ t_moni	*monis_init(t_philo *philos, t_info *info);
 
 void	*moni_even(void *param);
 void	*moni_odd(void *param);
+void	*moni_eaten(void *param);
+
 int		moni_thread_start(t_moni *monis);
 int		moni_thread_end(t_moni *monis);
 

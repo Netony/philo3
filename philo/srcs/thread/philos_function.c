@@ -6,7 +6,7 @@
 /*   By: dajeon <dajeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/25 18:37:55 by dajeon            #+#    #+#             */
-/*   Updated: 2023/08/25 18:37:56 by dajeon           ###   ########.fr       */
+/*   Updated: 2023/08/25 20:01:14 by dajeon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,13 +28,10 @@ void	*philo_one(void *param)
 void	*philo_odd(void *param)
 {
 	t_philo	*philo;
-	int		ret;
 
-	ret = 0;
 	philo = (t_philo *)param;
 	ft_settime(philo->eaten_time, NULL);
-	while (ret == 0 && philo->dish != philo->info->number_of_times)
-//	while (!ft_isend(philo->info) && philo->dish > philo->info->number_of_times)
+	while (ft_iseaten(philo) == 0 && ft_isend(philo->info) == 0)
 	{
 		ft_wait(philo->info->size);
 		ft_take(philo->left);
@@ -51,13 +48,7 @@ void	*philo_odd(void *param)
 		ft_release(philo->right);
 		ft_timestamp(philo, "is sleeping");
 		ft_msleep(philo->info->time_to_sleep);
-		ret = ft_timestamp(philo, "is thinking");
-		if (philo->dish == philo->info->number_of_times)
-		{
-			ft_lockstat(philo->iseaten);
-			ft_setstat(philo->iseaten, 1);
-			ft_unlockstat(philo->iseaten);
-		}
+		ft_timestamp(philo, "is thinking");
 	}	
 	return (NULL);
 }
@@ -65,12 +56,10 @@ void	*philo_odd(void *param)
 void	*philo_even(void *param)
 {
 	t_philo	*philo;
-	int		ret;
-
-	ret = 0;
 	philo = (t_philo *)param;
+
 	ft_settime(philo->eaten_time, NULL);
-	while (ret == 0 && philo->dish != philo->info->number_of_times)
+	while (ft_iseaten(philo) == 0 && ft_isend(philo->info) == 0)
 	{
 		ft_take(philo->right);
 		ft_timestamp(philo, "has taken a fork");
@@ -86,13 +75,7 @@ void	*philo_even(void *param)
 		ft_release(philo->left);
 		ft_timestamp(philo, "is sleeping");
 		ft_msleep(philo->info->time_to_sleep);
-		ret = ft_timestamp(philo, "is thinking");
-		if (philo->dish == philo->info->number_of_times)
-		{
-			ft_lockstat(philo->iseaten);
-			ft_setstat(philo->iseaten, 1);
-			ft_unlockstat(philo->iseaten);
-		}
+		ft_timestamp(philo, "is thinking");
 	}
 	return (NULL);
 }
