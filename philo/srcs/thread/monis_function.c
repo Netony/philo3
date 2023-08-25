@@ -6,7 +6,7 @@
 /*   By: dajeon <dajeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/25 18:37:51 by dajeon            #+#    #+#             */
-/*   Updated: 2023/08/25 22:24:06 by dajeon           ###   ########.fr       */
+/*   Updated: 2023/08/25 22:36:43 by dajeon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,7 @@ void	*moni_eaten(void *param)
 	t_stat	*iseaten_array;
 	int		size;
 	int		i;
+	int		ret;
 
 	info = (t_info *)param;
 	size = info->size;
@@ -82,11 +83,12 @@ void	*moni_eaten(void *param)
 	{
 		ft_wait(size);
 		ft_lockstat(&iseaten_array[i]);
-		if (ft_getstat(&iseaten_array[i]) == 0)
+		ret = ft_getstat(&iseaten_array[i]);
+		ft_unlockstat(&iseaten_array[i]);
+		if (ret == 0)
 			i = 0;
 		else
 			i++;
-		ft_unlockstat(&iseaten_array[i]);
 	}
 	ft_lockstat(&info->isend);
 	ft_setstat(&info->isend, 1);
