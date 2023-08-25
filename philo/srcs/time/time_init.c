@@ -1,27 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fork.c                                             :+:      :+:    :+:   */
+/*   time_init.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dajeon <dajeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/18 18:15:44 by dajeon            #+#    #+#             */
-/*   Updated: 2023/08/25 16:44:08 by dajeon           ###   ########.fr       */
+/*   Created: 2023/08/25 18:31:58 by dajeon            #+#    #+#             */
+/*   Updated: 2023/08/25 18:32:17 by dajeon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "status.h"
 
-int	fork_take(t_stat *fork)
+int	ft_timeinit(t_time *time)
 {
-	ft_statlock(fork);
-	fork->stat = 1;
+	ft_tvrenew(&(time->timeval));
+	pthread_mutex_init(&(time->m_time), NULL);
 	return (0);
 }
 
-int	fork_release(t_stat *fork)
+int	ft_timedel(t_time *time)
 {
-	fork->stat = 0;
-	ft_statunlock(fork);
+	pthread_mutex_destroy(&(time->m_time));
 	return (0);
 }

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   monis_function.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dajeon <dajeon@student.42seoul.kr>         +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/08/25 18:37:51 by dajeon            #+#    #+#             */
+/*   Updated: 2023/08/25 18:37:52 by dajeon           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "monitor.h"
 
 int	ft_kill(t_philo *philo, t_info *info);
@@ -90,16 +102,16 @@ void	*moni_eaten(void *param)
 	while (i == size)
 	{
 		ft_wait(size);
-		ft_statlock(&iseaten_array[i]);
-		if (ft_statget(&iseaten_array[i]) == 1)
+		ft_lockstat(&iseaten_array[i]);
+		if (ft_getstat(&iseaten_array[i]) == 1)
 			i = 0;
 		else
 			i++;
-		ft_statunlock(&iseaten_array[i]);
+		ft_unlockstat(&iseaten_array[i]);
 	}
-	ft_statlock(&info->isend);
-	ft_statset(&info->isend, 1);
-	ft_statunlock(&info->isend);
+	ft_lockstat(&info->isend);
+	ft_setstat(&info->isend, 1);
+	ft_unlockstat(&info->isend);
 	return (NULL);
 }
 int	ft_last(int name, int moni_size, int size)

@@ -1,25 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   stat_init.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dajeon <dajeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/11 13:14:49 by dajeon            #+#    #+#             */
-/*   Updated: 2023/08/25 16:25:15 by dajeon           ###   ########.fr       */
+/*   Created: 2023/08/25 18:38:34 by dajeon            #+#    #+#             */
+/*   Updated: 2023/08/25 18:38:35 by dajeon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lib.h"
-#include "philo.h"
+#include "status.h"
 
-int	ft_wait(int number)
+int	ft_statinit(t_stat *stat)
 {
-	int	wait;
+	stat->stat = 0;
+	pthread_mutex_init(&(stat->m_stat), NULL);
+	return (0);
+}
 
-	if (number < 90)
-		wait = 100 + 10 * number;
-	else
-		wait = 1000;
-	return (usleep(wait));
+int	ft_statdel(t_stat *stat)
+{
+	pthread_mutex_destroy(&(stat->m_stat));
+	return (0);
 }

@@ -5,27 +5,14 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: dajeon <dajeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/11 13:14:44 by dajeon            #+#    #+#             */
-/*   Updated: 2023/08/24 19:05:19 by dajeon           ###   ########.fr       */
+/*   Created: 2023/08/25 18:32:11 by dajeon            #+#    #+#             */
+/*   Updated: 2023/08/25 18:32:12 by dajeon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "status.h"
 
-int	ft_timeinit(t_time *time)
-{
-	ft_tvrenew(&(time->timeval));
-	pthread_mutex_init(&(time->m_time), NULL);
-	return (0);
-}
-
-int	ft_timedel(t_time *time)
-{
-	pthread_mutex_destroy(&(time->m_time));
-	return (0);
-}
-
-int	ft_timeset(t_time *time, t_timeval *copy)
+int	ft_settime(t_time *time, t_timeval *copy)
 {
 	t_timeval	*timeval;
 
@@ -40,7 +27,19 @@ int	ft_timeset(t_time *time, t_timeval *copy)
 	return (0);
 }
 
-int	ft_timeget(t_timeval *start, t_time *time)
+t_timeval	*ft_gettime(t_time *time)
 {
-	return (ft_tvdiff(start, &(time->timeval)));
+	return (&(time->timeval));
+}
+
+int	ft_locktime(t_time *time)
+{
+	pthread_mutex_lock(&(time->m_time));
+	return (0);
+}
+
+int	ft_unlocktime(t_time *time)
+{
+	pthread_mutex_unlock(&(time->m_time));
+	return (0);
 }

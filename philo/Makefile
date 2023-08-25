@@ -6,7 +6,7 @@
 #    By: dajeon <dajeon@student.42seoul.kr>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/16 09:00:32 by dajeon            #+#    #+#              #
-#    Updated: 2023/08/25 16:51:54 by dajeon           ###   ########.fr        #
+#    Updated: 2023/08/25 18:37:07 by dajeon           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,26 +17,24 @@ SOURCES = parser/parser.c \
 		  parser/parser_utils.c \
 		  parser/parser_utils3.c \
 		  parser/parser_utils2.c \
-		  info.c \
 		  stat/stat.c \
+		  stat/fork.c \
+		  stat/stat_init.c \
 		  stat/stat_array.c \
-		  stat/stat_fork.c \
-		  stat/stat_lock.c \
 		  time/time.c \
-		  time/time_array.c \
-		  time/time_lock.c \
 		  time/timeval.c \
-		  ft_timestamp.c \
-		  ft_check.c \
-		  monis_init.c \
-		  monis_function.c \
-		  utils.c \
-		  thread_init.c \
-		  philos_init.c \
-		  philos_function.c
+		  time/time_init.c \
+		  time/time_array.c \
+		  thread/thread_init.c \
+		  thread/philos_init.c \
+		  thread/philos_function.c \
+		  thread/monis_init.c \
+		  thread/monis_function.c \
+		  thread/utils.c \
+		  thread/utils2.c \
+		  info_init.c
 
-
-DIRS = stat time utils parser
+DIRS = stat time utils parser thread
 
 SOURCES_MANDA = main.c
 SOURCES_BONUS =
