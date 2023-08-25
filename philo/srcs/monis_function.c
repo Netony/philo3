@@ -1,5 +1,6 @@
 #include "monitor.h"
 
+int	ft_kill(t_philo *philo, t_info *info);
 int	ft_isdead(t_philo *philo, t_info *info);
 int	ft_isend(t_stat *isend);
 int	ft_last(int name, int moni_size, int size);
@@ -46,6 +47,20 @@ void	*moni_even(void *param)
 
 void	*moni_killer(void *param)
 {
+	t_philo		*philo;
+	t_timeval	start;
+
+	ft_tvrenew(&start);
+	philo = (t_philo *)param;
+	while (ft_tvnow(&start) < philo->info->time_to_die)
+		usleep(200);
+	ft_kill(philo, philo->info);
+	return (NULL);
+}
+
+/*
+void	*moni_killer(void *param)
+{
 	t_philo		*kill;
 	t_timeval	start;
 
@@ -59,6 +74,7 @@ void	*moni_killer(void *param)
 	}
 	return (NULL);
 }
+*/
 
 void	*moni_eaten(void *param)
 {

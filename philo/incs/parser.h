@@ -1,33 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   parser.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dajeon <dajeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/11 13:14:49 by dajeon            #+#    #+#             */
-/*   Updated: 2023/08/24 18:52:30 by dajeon           ###   ########.fr       */
+/*   Created: 2023/08/25 16:31:23 by dajeon            #+#    #+#             */
+/*   Updated: 2023/08/25 16:31:47 by dajeon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lib.h"
-#include "philo.h"
+#ifndef PARSER_H
+# define PARSER_H
 
-void	ft_free(void *ptr)
-{
-	if (ptr == NULL)
-		return ;
-	free(ptr);
-	ptr = NULL;
-}
+# include <stdlib.h>
+# include <unistd.h>
 
-int	ft_wait(int number)
-{
-	int	wait;
+int		ft_isin(int a, char const *b);
+int		ft_toklen(const char *s, const char *set);
+int		ft_duplen(const char *s, const char *set);
+ssize_t	ft_putendl_fd(char *s, int fd);
+size_t	ft_strlen(const char *s);
+int		ft_isspace(int c);
+int		ft_atoi(const char *nptr);
 
-	if (number < 90)
-		wait = 100 + 10 * number;
-	else
-		wait = 1000;
-	return (usleep(wait));
-}
+#endif

@@ -10,12 +10,12 @@ t_moni	*monis_init(t_philo *philos, t_info *info)
 	int		moni_size;
 
 	size = info->size;
-	monis = (t_moni *)malloc(sizeof(t_moni) * size);
+	moni_size = ft_moni_size(size, 100);
+	monis = (t_moni *)malloc(sizeof(t_moni) * moni_size);
 	if (monis == NULL)
 		return (NULL);
 	i = 0;
-	moni_size = ft_moni_size(size, 100);
-	while (i < size)
+	while (i < moni_size)
 	{
 		monis[i].name = i;
 		monis[i].size = moni_size;
@@ -32,5 +32,7 @@ int	ft_moni_size(int size, int weight)
 
 	i = 1;
 	i += size / weight;
+	if (size == 0)
+		return (0);
 	return (i);
 }

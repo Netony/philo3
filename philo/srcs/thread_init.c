@@ -1,5 +1,7 @@
 #include "philo.h"
 
+int	ft_alwaysdie(t_info *info);
+
 int	philo_thread_start(t_philo *philos, t_info *info)
 {
 	int	size;
@@ -43,8 +45,8 @@ int	moni_thread_start(t_moni *monis)
 
 	i = 0;
 	size = monis[i].size;
-	if (size % 2 == 1 && size != 1)
-		pthread_create(&killer, NULL, moni_killer, &monis->philos[size - 2]);
+	if (ft_alwaysdie(monis->info))
+		pthread_create(&killer, NULL, moni_killer, &monis->philos[monis[i].info->size - 2]);
 	while (i < size)
 	{
 		if (i % 2 == 0)
@@ -53,7 +55,7 @@ int	moni_thread_start(t_moni *monis)
 			pthread_create(&(monis[i].thread), NULL, moni_even, &monis[i]);
 		i++;
 	}
-	if (size % 2 == 1)
+	if (ft_alwaysdie(monis->info))
 		pthread_join(killer, NULL);
 	return (0);
 }

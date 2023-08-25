@@ -1,41 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils2.c                                           :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dajeon <dajeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/16 18:25:51 by dajeon            #+#    #+#             */
-/*   Updated: 2023/08/23 19:18:07 by dajeon           ###   ########.fr       */
+/*   Created: 2023/08/11 13:14:49 by dajeon            #+#    #+#             */
+/*   Updated: 2023/08/25 16:25:15 by dajeon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lib.h"
+#include "philo.h"
 
-ssize_t	ft_putendl_fd(char *s, int fd)
+int	ft_wait(int number)
 {
-	ssize_t	put;
+	int	wait;
 
-	put = write(fd, s, ft_strlen(s));
-	if (put >= 0)
-		put += write(fd, "\n", 1);
-	return (put);
-}
-
-size_t	ft_strlen(const char *s)
-{
-	size_t	len;
-
-	len = 0;
-	while (s[len])
-		len++;
-	return (len);
-}
-
-int	ft_isspace(int c)
-{
-	if (c == 32 || (9 <= c && c <= 13))
-		return (c);
+	if (number < 90)
+		wait = 100 + 10 * number;
 	else
-		return (0);
+		wait = 1000;
+	return (usleep(wait));
 }

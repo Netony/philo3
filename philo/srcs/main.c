@@ -6,14 +6,12 @@
 /*   By: dajeon <dajeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/11 13:10:32 by dajeon            #+#    #+#             */
-/*   Updated: 2023/08/25 13:38:02 by dajeon           ###   ########.fr       */
+/*   Updated: 2023/08/25 16:50:46 by dajeon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 #include "monitor.h"
-
-int	ft_last(int name, int moni_size, int size);
 
 int	main(int argc, char **argv)
 {
@@ -23,6 +21,8 @@ int	main(int argc, char **argv)
 
 	if (parser(&info, argc, argv) < 0)
 		return (1);
+	if (info.size == 0 || info.number_of_times == 0)
+		return (0);
 	if (info_new(&info) < 0)
 		return (1);
 	philos = philos_init(&info);

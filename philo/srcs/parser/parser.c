@@ -6,12 +6,12 @@
 /*   By: dajeon <dajeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/11 13:10:43 by dajeon            #+#    #+#             */
-/*   Updated: 2023/08/24 11:08:52 by dajeon           ###   ########.fr       */
+/*   Updated: 2023/08/25 16:31:38 by dajeon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
-#include "lib.h"
+#include "parser.h"
 #define INT_MAX 2147483647
 
 int	ft_check_ispos(char *nptr);

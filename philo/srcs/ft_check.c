@@ -56,3 +56,27 @@ int	ft_isstarve(t_time *eaten_time, int time_to_dead)
 		return (1);
 	return (0);
 }
+
+int	ft_kill(t_philo *philo, t_info *info)
+{
+	ft_statlock(&(info->isend));
+	ft_statlock(&(info->isdead));
+	ft_setdead(&(info->isdead), philo, info);
+	ft_statunlock(&(info->isdead));
+	ft_statunlock(&(info->isend));
+	return (0);
+}
+
+int	ft_alwaysdie(t_info *info)
+{
+	int	size;
+
+	size = info->size;
+	if (size % 2 == 1 && size != 1)
+	{
+		if (info->time_to_eat * 2 + info->time_to_sleep
+			   	> info->time_to_die)
+			return (1);
+	}
+	return (0);
+}

@@ -6,7 +6,7 @@
 /*   By: dajeon <dajeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/11 13:18:14 by dajeon            #+#    #+#             */
-/*   Updated: 2023/08/25 08:05:06 by dajeon           ###   ########.fr       */
+/*   Updated: 2023/08/25 16:32:01 by dajeon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 # include <stdlib.h>
 # include <stdio.h>
 # include <unistd.h>
-# include "lib.h"
 # include "time.h"
 # include "status.h"
 

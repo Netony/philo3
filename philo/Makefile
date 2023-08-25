@@ -6,17 +6,18 @@
 #    By: dajeon <dajeon@student.42seoul.kr>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/16 09:00:32 by dajeon            #+#    #+#              #
-#    Updated: 2023/08/25 13:37:16 by dajeon           ###   ########.fr        #
+#    Updated: 2023/08/25 16:51:54 by dajeon           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = philo
 BONUS = 
 
-SOURCES = utils/ft_toklen.c \
-		  utils/utils.c \
-		  utils/utils2.c \
-		  utils/ft_atoi.c \
+SOURCES = parser/parser.c \
+		  parser/parser_utils.c \
+		  parser/parser_utils3.c \
+		  parser/parser_utils2.c \
+		  info.c \
 		  stat/stat.c \
 		  stat/stat_array.c \
 		  stat/stat_fork.c \
@@ -25,23 +26,22 @@ SOURCES = utils/ft_toklen.c \
 		  time/time_array.c \
 		  time/time_lock.c \
 		  time/timeval.c \
-		  parser.c \
 		  ft_timestamp.c \
-		  info.c \
 		  ft_check.c \
 		  monis_init.c \
 		  monis_function.c \
+		  utils.c \
 		  thread_init.c \
 		  philos_init.c \
 		  philos_function.c
 
 
-DIRS = stat time utils
+DIRS = stat time utils parser
 
 SOURCES_MANDA = main.c
 SOURCES_BONUS =
 
-INCLUDES = philo.h lib.h time.h status.h
+INCLUDES = philo.h parser.h time.h status.h
 INCLUDES_MANDA =
 INCLUDES_BONUS =
 
@@ -86,8 +86,7 @@ CC = cc
 AR = ar
 RM = rm
 
-CFLAGS = -Wall -Wextra -Werror 
-LIBFTFLAGS =
+CFLAGS = -Wall -Wextra -Werror
 
 ARFLAGS = crus
 RMFLAGS = -rf
