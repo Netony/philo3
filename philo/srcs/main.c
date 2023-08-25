@@ -6,7 +6,7 @@
 /*   By: dajeon <dajeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/11 13:10:32 by dajeon            #+#    #+#             */
-/*   Updated: 2023/08/24 20:03:17 by dajeon           ###   ########.fr       */
+/*   Updated: 2023/08/25 13:38:02 by dajeon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	main(int argc, char **argv)
 		info_del(&info);
 		return (1);
 	}
-	monis = monis_init(&info);
+	monis = monis_init(philos, &info);
 	philo_thread_start(philos, &info);
 	moni_thread_start(monis);
 	moni_thread_end(monis);

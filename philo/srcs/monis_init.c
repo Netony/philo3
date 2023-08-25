@@ -2,7 +2,7 @@
 
 int	ft_moni_size(int size, int weight);
 
-t_moni	*monis_init(t_info *info)
+t_moni	*monis_init(t_philo *philos, t_info *info)
 {
 	t_moni	*monis;
 	int		i;
@@ -20,7 +20,7 @@ t_moni	*monis_init(t_info *info)
 		monis[i].name = i;
 		monis[i].size = moni_size;
 		monis[i].info = info;
-		monis[i].eaten_time_array = info->eaten_time_array;
+		monis[i].philos = philos;
 		i++;
 	}
 	return (monis);

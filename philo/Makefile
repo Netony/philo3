@@ -6,7 +6,7 @@
 #    By: dajeon <dajeon@student.42seoul.kr>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/16 09:00:32 by dajeon            #+#    #+#              #
-#    Updated: 2023/08/24 19:38:12 by dajeon           ###   ########.fr        #
+#    Updated: 2023/08/25 13:37:16 by dajeon           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,14 +26,14 @@ SOURCES = utils/ft_toklen.c \
 		  time/time_lock.c \
 		  time/timeval.c \
 		  parser.c \
-		  philosophers_start.c \
-		  philos_init.c \
-		  philo.c \
 		  ft_timestamp.c \
 		  info.c \
 		  ft_check.c \
-		  monitor.c \
-		  monis_init.c
+		  monis_init.c \
+		  monis_function.c \
+		  thread_init.c \
+		  philos_init.c \
+		  philos_function.c
 
 
 DIRS = stat time utils

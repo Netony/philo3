@@ -6,7 +6,7 @@
 /*   By: dajeon <dajeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/11 13:18:14 by dajeon            #+#    #+#             */
-/*   Updated: 2023/08/24 19:51:12 by dajeon           ###   ########.fr       */
+/*   Updated: 2023/08/25 08:05:06 by dajeon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,5 @@ int		ft_msleep(int ms);
 # include "monitor.h"
 
 int		ft_check_dead(t_time *times, int i, t_info *info);
-
 
 #endif

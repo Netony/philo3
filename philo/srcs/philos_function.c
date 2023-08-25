@@ -40,6 +40,12 @@ void	*philo_odd(void *param)
 		ft_timestamp(philo, "is sleeping");
 		ft_msleep(philo->info->time_to_sleep);
 		ret = ft_timestamp(philo, "is thinking");
+		if (philo->dish == philo->info->number_of_times)
+		{
+			ft_statlock(philo->iseaten);
+			ft_statset(philo->iseaten, 1);
+			ft_statunlock(philo->iseaten);
+		}
 	}	
 	return (NULL);
 }
@@ -69,6 +75,12 @@ void	*philo_even(void *param)
 		ft_timestamp(philo, "is sleeping");
 		ft_msleep(philo->info->time_to_sleep);
 		ret = ft_timestamp(philo, "is thinking");
+		if (philo->dish == philo->info->number_of_times)
+		{
+			ft_statlock(philo->iseaten);
+			ft_statset(philo->iseaten, 1);
+			ft_statunlock(philo->iseaten);
+		}
 	}
 	return (NULL);
 }

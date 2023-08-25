@@ -1,4 +1,5 @@
 #include "philo.h"
+
 int	philo_thread_start(t_philo *philos, t_info *info)
 {
 	int	size;
@@ -42,8 +43,8 @@ int	moni_thread_start(t_moni *monis)
 
 	i = 0;
 	size = monis[i].size;
-	if (size % 2 == 1)
-		pthread_create(&killer, NULL, moni_killer, monis->info);
+	if (size % 2 == 1 && size != 1)
+		pthread_create(&killer, NULL, moni_killer, &monis->philos[size - 2]);
 	while (i < size)
 	{
 		if (i % 2 == 0)

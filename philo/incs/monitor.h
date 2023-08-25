@@ -6,13 +6,13 @@
 typedef struct s_moni
 {
 	pthread_t	thread;
-	t_time		*eaten_time_array;
+	t_philo		*philos;
 	int			name;
 	int			size;
 	t_info		*info;
 }	t_moni;
 
-t_moni	*monis_init(t_info *info);
+t_moni	*monis_init(t_philo *philos, t_info *info);
 
 void	*moni_even(void *param);
 void	*moni_odd(void *param);
