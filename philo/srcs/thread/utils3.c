@@ -6,7 +6,7 @@
 /*   By: dajeon <dajeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/25 19:22:20 by dajeon            #+#    #+#             */
-/*   Updated: 2023/08/25 20:06:17 by dajeon           ###   ########.fr       */
+/*   Updated: 2023/08/25 20:13:39 by dajeon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,8 @@ int	ft_isdead(t_philo *philo, t_info *info)
 			ft_setdead(&(info->isdead), philo, info);
 			ft_lockstat(&(info->isend));
 			ft_unlockstat(&(info->isend));
-			ret = 1;
 		}
+		ret = 1;
 		ft_unlockstat(philo->iseaten);
 	}
 	ft_unlocktime(eaten_time);

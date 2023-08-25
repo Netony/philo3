@@ -6,7 +6,7 @@
 /*   By: dajeon <dajeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/25 18:38:06 by dajeon            #+#    #+#             */
-/*   Updated: 2023/08/25 19:27:29 by dajeon           ###   ########.fr       */
+/*   Updated: 2023/08/25 20:18:42 by dajeon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,17 @@
 
 int	ft_iseaten(t_philo *philo)
 {
+	int	ret;
+
+	ret = 0;
+	ft_lockstat(philo->iseaten);
 	if (philo->dish == philo->info->number_of_times)
 	{
-		ft_lockstat(philo->iseaten);
 		ft_setstat(philo->iseaten, 1);
-		ft_unlockstat(philo->iseaten);
-		return (1);
+		ret = 1;
 	}
-	return (0);
+	ft_unlockstat(philo->iseaten);
+	return (ret);
 }
 
 int	ft_isend(t_info *info)
