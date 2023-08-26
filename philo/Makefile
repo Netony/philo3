@@ -6,7 +6,7 @@
 #    By: dajeon <dajeon@student.42seoul.kr>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/16 09:00:32 by dajeon            #+#    #+#              #
-#    Updated: 2023/08/26 12:51:24 by dajeon           ###   ########.fr        #
+#    Updated: 2023/08/26 12:53:49 by dajeon           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,7 +35,7 @@ SOURCES = parser/parser.c \
 		  thread/utils3.c \
 		  info_init.c
 
-DIRS = stat time utils parser thread
+DIRS = stat time parser thread
 
 SOURCES_MANDA = main.c
 SOURCES_BONUS =

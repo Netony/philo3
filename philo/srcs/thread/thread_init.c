@@ -6,13 +6,26 @@
 /*   By: dajeon <dajeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/25 18:38:00 by dajeon            #+#    #+#             */
-/*   Updated: 2023/08/26 12:46:11 by dajeon           ###   ########.fr       */
+/*   Updated: 2023/08/26 13:03:09 by dajeon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "thread.h"
 
-int	ft_alwaysdie(t_info *info);
+int	thread_start(t_philo *philos, t_info *info)
+{
+	t_moni	*monis;
+
+	monis = monis_init(philos, info);
+	if (monis == NULL)
+		return (-1);
+	philo_thread_start(philos, info);
+	moni_thread_start(monis);
+	moni_thread_end(monis);
+	philo_thread_end(philos, info);
+	free(monis);
+	return (0);
+}
 
 int	philo_thread_start(t_philo *philos, t_info *info)
 {
