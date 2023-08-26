@@ -1,34 +1,48 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo.c                                            :+:      :+:    :+:   */
+/*   philos_function.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dajeon <dajeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/11 13:15:03 by dajeon            #+#    #+#             */
-/*   Updated: 2023/08/24 11:22:31 by dajeon           ###   ########.fr       */
+/*   Created: 2023/08/25 18:37:55 by dajeon            #+#    #+#             */
+/*   Updated: 2023/08/26 12:17:41 by dajeon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo.h"
+#include "thread.h"
+int	ft_check_time(t_philo *philo, t_info *info);
 
-void	*ft_odd(void *param)
+void	*philo_one(void *param)
 {
 	t_philo	*philo;
 
 	philo = (t_philo *)param;
-	ft_tvrenew(philo->last);
-	while (!ft_isend(philo->info) && philo->dish < philo->info->number_of_times)
+	ft_settime(philo->eaten_time, NULL);
+	usleep(100);
+	ft_take(philo->right);
+	ft_timestamp(philo, "has taken a fork");
+	ft_release(philo->right);
+	return (NULL);
+}
+
+void	*philo_odd(void *param)
+{
+	t_philo	*philo;
+
+	philo = (t_philo *)param;
+	ft_settime(philo->eaten_time, NULL);
+	while (ft_iseaten(philo) == 0 && ft_isend(philo->info) == 0)
 	{
 		ft_wait(philo->info->size);
 		ft_take(philo->left);
 		ft_timestamp(philo, "has taken a fork");
 		ft_take(philo->right);
 		ft_timestamp(philo, "has taken a fork");
-		pthread_mutex_lock(&(philo->m_last));
-		ft_timeinit(philo->last);
+		ft_locktime(philo->eaten_time);
+		ft_settime(philo->eaten_time, NULL);
+		ft_unlocktime(philo->eaten_time);
 		(philo->dish)++;
-		pthread_mutex_unlock(&(philo->m_last));
 		ft_timestamp(philo, "is eating");
 		ft_msleep(philo->info->time_to_eat);
 		ft_release(philo->left);
@@ -36,26 +50,26 @@ void	*ft_odd(void *param)
 		ft_timestamp(philo, "is sleeping");
 		ft_msleep(philo->info->time_to_sleep);
 		ft_timestamp(philo, "is thinking");
-	}
+	}	
 	return (NULL);
 }
 
-void	*ft_even(void *param)
+void	*philo_even(void *param)
 {
 	t_philo	*philo;
 
 	philo = (t_philo *)param;
-	ft_timeinit(philo->last);
-	while (!ft_isend(philo->info) && philo->dish < philo->info->number_of_times)
+	ft_settime(philo->eaten_time, NULL);
+	while (ft_iseaten(philo) == 0 && ft_isend(philo->info) == 0)
 	{
 		ft_take(philo->right);
 		ft_timestamp(philo, "has taken a fork");
 		ft_take(philo->left);
 		ft_timestamp(philo, "has taken a fork");
-		pthread_mutex_lock(&(philo->m_last));
-		ft_timeinit(philo->last);
+		ft_locktime(philo->eaten_time);
+		ft_settime(philo->eaten_time, NULL);
+		ft_unlocktime(philo->eaten_time);
 		(philo->dish)++;
-		pthread_mutex_unlock(&(philo->m_last));
 		ft_timestamp(philo, "is eating");
 		ft_msleep(philo->info->time_to_eat);
 		ft_release(philo->right);
@@ -64,17 +78,5 @@ void	*ft_even(void *param)
 		ft_msleep(philo->info->time_to_sleep);
 		ft_timestamp(philo, "is thinking");
 	}
-	return (NULL);
-}
-
-void	*ft_solo(void *param)
-{
-	t_philo	*philo;
-
-	philo = (t_philo *)param;
-	ft_timeinit(philo->last);
-	usleep(100);
-	ft_take(philo->right);
-	ft_timestamp(philo, "has taken a fork");
 	return (NULL);
 }

@@ -6,7 +6,7 @@
 #    By: dajeon <dajeon@student.42seoul.kr>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/16 09:00:32 by dajeon            #+#    #+#              #
-#    Updated: 2023/08/25 20:10:00 by dajeon           ###   ########.fr        #
+#    Updated: 2023/08/26 12:51:24 by dajeon           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,7 +40,7 @@ DIRS = stat time utils parser thread
 SOURCES_MANDA = main.c
 SOURCES_BONUS =
 
-INCLUDES = philo.h parser.h time.h status.h
+INCLUDES = thread.h philo.h parser.h monitor.h status.h
 INCLUDES_MANDA =
 INCLUDES_BONUS =
 
@@ -85,7 +85,7 @@ CC = cc
 AR = ar
 RM = rm
 
-CFLAGS = -Wall -Wextra -Werror 
+CFLAGS = -Wall -Wextra -Werror
 
 ARFLAGS = crus
 RMFLAGS = -rf

@@ -1,32 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   monitor.h                                          :+:      :+:    :+:   */
+/*   info.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dajeon <dajeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/26 11:52:38 by dajeon            #+#    #+#             */
-/*   Updated: 2023/08/26 12:12:35 by dajeon           ###   ########.fr       */
+/*   Created: 2023/08/26 12:22:53 by dajeon            #+#    #+#             */
+/*   Updated: 2023/08/26 12:22:53 by dajeon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MONITOR_H
-# define MONITOR_H
+#ifndef INFO_H
+# define INFO_H
 
-# include <pthread.h>
-# include "status.h"
-# include "info.h"
-# include "philo.h"
-
-typedef struct s_moni
+typedef struct s_info
 {
-	pthread_t	thread;
-	int			name;
-	t_philo		*philos;
 	int			size;
-	t_info		*info;
-}	t_moni;
+	int			moni_size;
+	int			time_to_sleep;
+	int			time_to_eat;
+	int			time_to_die;
+	int			number_of_times;
+	t_stat		isend;
+	t_stat		isdead;
+	t_stat		*fork_array;
+	t_stat		*iseaten_array;
+	t_time		*eaten_time_array;
+	t_timeval	start_time;
+}	t_info;
 
-t_moni	*monis_init(t_philo *philos, t_info *info);
+int		parser(t_info *info, int argc, char **argv);
+int		info_new(t_info *info);
+int		info_del(t_info *info);
 
 #endif

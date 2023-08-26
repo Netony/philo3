@@ -6,11 +6,11 @@
 /*   By: dajeon <dajeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/25 18:35:14 by dajeon            #+#    #+#             */
-/*   Updated: 2023/08/25 18:35:15 by dajeon           ###   ########.fr       */
+/*   Updated: 2023/08/26 12:07:07 by dajeon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo.h"
+#include "thread.h"
 #include "parser.h"
 #define INT_MAX 2147483647
 

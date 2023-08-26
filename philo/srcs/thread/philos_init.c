@@ -6,11 +6,11 @@
 /*   By: dajeon <dajeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/25 18:37:58 by dajeon            #+#    #+#             */
-/*   Updated: 2023/08/25 18:37:58 by dajeon           ###   ########.fr       */
+/*   Updated: 2023/08/26 12:07:08 by dajeon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo.h"
+#include "thread.h"
 
 t_philo	*philos_init(t_info *info)
 {

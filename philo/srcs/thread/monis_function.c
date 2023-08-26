@@ -6,11 +6,11 @@
 /*   By: dajeon <dajeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/25 18:37:51 by dajeon            #+#    #+#             */
-/*   Updated: 2023/08/25 22:36:43 by dajeon           ###   ########.fr       */
+/*   Updated: 2023/08/26 12:27:35 by dajeon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "monitor.h"
+#include "thread.h"
 
 int	ft_last(int name, int moni_size, int size);
 
@@ -54,6 +54,7 @@ void	*moni_even(void *param)
 	return (NULL);
 }
 
+/*
 void	*moni_killer(void *param)
 {
 	t_philo		*philo;
@@ -66,6 +67,7 @@ void	*moni_killer(void *param)
 	ft_kill(philo, philo->info);
 	return (NULL);
 }
+*/
 
 void	*moni_eaten(void *param)
 {

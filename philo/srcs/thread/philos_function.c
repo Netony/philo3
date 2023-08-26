@@ -6,11 +6,13 @@
 /*   By: dajeon <dajeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/25 18:37:55 by dajeon            #+#    #+#             */
-/*   Updated: 2023/08/25 20:01:14 by dajeon           ###   ########.fr       */
+/*   Updated: 2023/08/26 12:47:43 by dajeon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo.h"
+#include "thread.h"
+
+int	ft_check_myself(t_philo *philo, t_info *info);
 
 void	*philo_one(void *param)
 {
@@ -39,6 +41,7 @@ void	*philo_odd(void *param)
 		ft_take(philo->right);
 		ft_timestamp(philo, "has taken a fork");
 		ft_locktime(philo->eaten_time);
+		ft_check_myself(philo, philo->info);
 		ft_settime(philo->eaten_time, NULL);
 		ft_unlocktime(philo->eaten_time);
 		(philo->dish)++;
@@ -56,8 +59,8 @@ void	*philo_odd(void *param)
 void	*philo_even(void *param)
 {
 	t_philo	*philo;
-	philo = (t_philo *)param;
 
+	philo = (t_philo *)param;
 	ft_settime(philo->eaten_time, NULL);
 	while (ft_iseaten(philo) == 0 && ft_isend(philo->info) == 0)
 	{
@@ -66,6 +69,7 @@ void	*philo_even(void *param)
 		ft_take(philo->left);
 		ft_timestamp(philo, "has taken a fork");
 		ft_locktime(philo->eaten_time);
+		ft_check_myself(philo, philo->info);
 		ft_settime(philo->eaten_time, NULL);
 		ft_unlocktime(philo->eaten_time);
 		(philo->dish)++;

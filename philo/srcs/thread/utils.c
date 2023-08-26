@@ -6,11 +6,11 @@
 /*   By: dajeon <dajeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/11 13:14:49 by dajeon            #+#    #+#             */
-/*   Updated: 2023/08/25 22:22:51 by dajeon           ###   ########.fr       */
+/*   Updated: 2023/08/26 12:42:04 by dajeon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo.h"
+#include "thread.h"
 
 int	ft_wait(int number)
 {
@@ -30,7 +30,8 @@ int	ft_timestamp(t_philo *philo, char *msg)
 	ret = 0;
 	ft_lockstat(&(philo->info->isdead));
 	if (ft_getstat(&(philo->info->isdead)) == 0)
-		printf("%d %d %s\n", ft_tvnow(&(philo->info->start_time)), philo->name, msg);
+		printf("%d %d %s\n", \
+				ft_tvnow(&(philo->info->start_time)), philo->name, msg);
 	else
 		ret = 1;
 	ft_unlockstat(&(philo->info->isdead));
@@ -62,10 +63,10 @@ int	ft_usleep(int us)
 	ft_tvrenew(&start);
 	while (ft_tvnow_us(&start) < us)
 	{
-		if (us * 1 / 5 >= 50)
+		if (us * 1 / 5 >= 100)
 			us = us / 5;
 		else
-			us = 50;
+			us = 100;
 		usleep(us);
 	}
 	return (0);

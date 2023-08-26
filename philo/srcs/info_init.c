@@ -6,11 +6,11 @@
 /*   By: dajeon <dajeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/25 16:32:41 by dajeon            #+#    #+#             */
-/*   Updated: 2023/08/25 16:33:14 by dajeon           ###   ########.fr       */
+/*   Updated: 2023/08/26 12:05:45 by dajeon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo.h"
+#include "thread.h"
 
 int	info_new(t_info *info)
 {

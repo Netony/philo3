@@ -6,12 +6,11 @@
 /*   By: dajeon <dajeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/11 13:10:32 by dajeon            #+#    #+#             */
-/*   Updated: 2023/08/25 16:50:46 by dajeon           ###   ########.fr       */
+/*   Updated: 2023/08/26 12:51:23 by dajeon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo.h"
-#include "monitor.h"
+#include "thread.h"
 
 int	main(int argc, char **argv)
 {

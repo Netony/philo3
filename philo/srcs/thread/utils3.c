@@ -6,11 +6,11 @@
 /*   By: dajeon <dajeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/25 19:22:20 by dajeon            #+#    #+#             */
-/*   Updated: 2023/08/25 22:13:01 by dajeon           ###   ########.fr       */
+/*   Updated: 2023/08/26 12:45:55 by dajeon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo.h"
+#include "thread.h"
 
 int	ft_isstarve(t_time *eaten_time, int time_to_dead);
 int	ft_setdead(t_stat *isdead, t_philo *philo, t_info *info);
@@ -28,13 +28,9 @@ int	ft_isdead(t_philo *philo, t_info *info)
 		ft_lockstat(philo->iseaten);
 		if (ft_getstat(philo->iseaten) == 0)
 		{
-			ft_lockstat(&(info->isdead));
-			ft_lockstat(&(info->isend));
-			ft_setdead(&(info->isdead), philo, info);
-			ft_unlockstat(&(info->isdead));
-			ft_unlockstat(&(info->isend));
+			ft_kill(philo, info);
+			ret = 1;
 		}
-		ret = 1;
 		ft_unlockstat(philo->iseaten);
 	}
 	ft_unlocktime(eaten_time);

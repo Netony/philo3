@@ -6,11 +6,11 @@
 /*   By: dajeon <dajeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/25 18:38:06 by dajeon            #+#    #+#             */
-/*   Updated: 2023/08/25 20:18:42 by dajeon           ###   ########.fr       */
+/*   Updated: 2023/08/26 12:51:25 by dajeon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo.h"
+#include "thread.h"
 
 int	ft_iseaten(t_philo *philo)
 {
@@ -44,9 +44,16 @@ int	ft_alwaysdie(t_info *info)
 	size = info->size;
 	if (size % 2 == 1 && size != 1)
 	{
-		if (info->time_to_eat * 2 + info->time_to_sleep
-			   	> info->time_to_die)
+		if (info->time_to_eat * 2 + info->time_to_sleep > \
+			info->time_to_die)
 			return (1);
 	}
+	return (0);
+}
+
+int	ft_check_myself(t_philo *philo, t_info *info)
+{
+	if (ft_tvnow(ft_gettime(philo->eaten_time)) >= info->time_to_die)
+		ft_kill(philo, info);
 	return (0);
 }

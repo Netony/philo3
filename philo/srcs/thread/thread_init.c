@@ -6,11 +6,11 @@
 /*   By: dajeon <dajeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/25 18:38:00 by dajeon            #+#    #+#             */
-/*   Updated: 2023/08/25 20:00:51 by dajeon           ###   ########.fr       */
+/*   Updated: 2023/08/26 12:46:11 by dajeon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo.h"
+#include "thread.h"
 
 int	ft_alwaysdie(t_info *info);
 
@@ -47,19 +47,15 @@ int	philo_thread_end(t_philo *philos, t_info *info)
 		pthread_join(philos[i++].thread, NULL);
 	return (0);
 }
-void	*moni_killer(void *param);
 
 int	moni_thread_start(t_moni *monis)
 {
 	int			size;
 	int			i;
-	pthread_t	killer;
 	pthread_t	monitor;
 
 	i = 0;
 	size = monis[i].size;
-	if (ft_alwaysdie(monis->info))
-		pthread_create(&killer, NULL, moni_killer, &monis->philos[monis[i].info->size - 2]);
 	pthread_create(&monitor, NULL, moni_eaten, monis->info);
 	while (i < size)
 	{
@@ -70,8 +66,6 @@ int	moni_thread_start(t_moni *monis)
 		i++;
 	}
 	pthread_join(monitor, NULL);
-	if (ft_alwaysdie(monis->info))
-		pthread_join(killer, NULL);
 	return (0);
 }
 
